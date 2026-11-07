@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: waterleak-mongo
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ['CMD', 'mongosh', '--eval', 'db.adminCommand("ping")']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: waterleak-server
+    restart: always
+    ports:
+      - '5000:5000'
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - CLIENT_URL=http://localhost:5173
+      - MONGODB_URI=mongodb://mongo:27017/waterleak-watch
+      - JWT_ACCESS_SECRET=wlw_docker_access_secret_production_2026
+      - JWT_REFRESH_SECRET=wlw_docker_refresh_secret_production_2026
+    depends_on:
+      mongo:
+        condition: service_healthy
+    volumes:
+      - uploads_data:/app/uploads
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: waterleak-client
+    restart: always
+    ports:
+      - '5173:80'
+    depends_on:
+      - server
+
+volumes:
+  mongo_data:
+  uploads_data:
+

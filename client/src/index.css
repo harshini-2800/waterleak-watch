@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+.light {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background-color: #050B18;
+  color: #E2E8F0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.light body {
+  background-color: #F8FAFC;
+  color: #0F172A;
+}
+
+/* Glassmorphism styling */
+.glass-panel {
+  background: rgba(11, 23, 48, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(34, 211, 238, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.light .glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.glass-panel-elevated {
+  background: rgba(17, 34, 74, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+}
+
+.light .glass-panel-elevated {
+  background: rgba(248, 250, 252, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* Cyber glow effects */
+.glow-aqua {
+  box-shadow: 0 0 20px -3px rgba(34, 211, 238, 0.35);
+}
+
+.glow-critical {
+  box-shadow: 0 0 20px -3px rgba(239, 68, 68, 0.4);
+}
+
+.glow-warning {
+  box-shadow: 0 0 20px -3px rgba(251, 146, 60, 0.35);
+}
+
+/* Dark mode Leaflet tile adjustment */
+.dark .leaflet-tile {
+  filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.35);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(11, 23, 48, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.5);
+}
+
+/* Accessibility: respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

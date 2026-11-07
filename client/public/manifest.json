@@ -1,0 +1,17 @@
+{
+  "short_name": "WaterLeak",
+  "name": "WaterLeak Watch - Community Water Leak Platform",
+  "icons": [
+    {
+      "src": "/water-drop.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#050B18",
+  "theme_color": "#050B18",
+  "display": "standalone",
+  "orientation": "portrait"
+}
+
